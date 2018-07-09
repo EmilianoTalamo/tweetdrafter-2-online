@@ -1,0 +1,477 @@
+@import url('tweetdrafter-fonts.css');
+
+*{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	user-select: none;
+	font-family: 'Quicksand';
+	font-weight: 400;
+	overflow-x: hidden;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6{
+	font-family: 'Quicksand';
+}
+
+a{
+	cursor: default;
+}
+
+* a:hover{
+	text-decoration: none;
+}
+
+body, .app, .app-body{
+	background-color: #ffffff;
+	overflow: auto;
+}
+
+.navbar-app{
+	background-color: #2196F3;
+	color: white;
+	border: none;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.05), 0 3px 6px rgba(0,0,0,0.1);
+	overflow: hidden;
+}
+
+md-icon.md-default-theme, md-icon{
+	color: white;
+}
+
+div[ng-controller='cloudList']{
+	background-color: rgb(250,250,250);
+	height: 100%;
+}
+
+#newTweetBtn{
+	position: fixed;
+	right: 1.5em;
+	bottom: 2em;
+	width: calc(2.5em + 5vw);
+	height: calc(2.5em + 5vw);
+}
+#newTweetBtn md-icon{
+	height: 60%;
+	width: 60%;
+}
+
+div[ng-controller="viewInput"]{
+	overflow: hidden;
+}
+
+#inputContent{
+	box-sizing: border-box;
+	width: 100%;
+	height: calc(90vh - 3em);
+	border-bottom: none;
+	margin: auto;
+	padding: 1em;
+	font-size: 1.6em;
+	line-height: 120%;
+	font-family: 'Noto Serif', 'Roboto Slab', serif;
+	resize: none;
+	border: none;
+	background: none;
+	-webkit-touch-callout: initial;
+	-webkit-user-select: initial;
+	user-select: initial;
+}
+#inputContent:focus{
+	outline: none;
+}
+
+#charcount{
+	text-align: right;
+	display: block;
+	font-size: 1.3em;
+	padding-top: 0.3em;
+	padding-right: 1em;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+#charcount.charcount-err{
+	color: red;
+}
+
+ul#tweetsContainer{
+	padding-left: 0;
+}
+
+ul#tweetsContainer > li.tweetItem{
+	margin: 0.6em;
+	padding: 0.4em 0.6em;
+	font-size: calc(0.75em + 1.5vw);
+	text-overflow: initial;
+	white-space: initial;
+	background-color: #fafafa;
+	border-radius: 2px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	color: rgba(0,0,0,0.7);
+	min-height: 3em;
+	display: flex;
+	align-items: center;
+	border-left: 2px solid #2196F3;
+	user-select: none;
+	position: relative;
+	z-index: 0;
+	height: initial;
+	max-height: 99999px;
+}
+ul#tweetsContainer > li.tweetItem:active{
+	box-shadow: 0 1px 8px rgba(0,0,0,0.15), 0 1px 4px rgba(0,0,0,0.3);
+	transition: box-shadow 300ms ease-out;
+}
+
+ul#tweetsContainer > li.tweetItem.tweetItem-long{
+	border-left-color: red;
+}
+ul#tweetsContainer > li.tweetItem.deletedTweet{
+	transform: translateX(-100%);
+	opacity: 0;
+	pointer-events: none;
+	transition: 
+		transform 800ms ease-in, 
+		opacity 600ms linear;
+}
+
+li.tweetItem.longTweet{
+	border-left-color: red;
+}
+
+.modal .modal-dialog .modal-content{
+	padding: 0;
+	border: none;
+	border-radius: 4px;
+	width: 90vw;
+	max-width: 600px;
+}
+
+.modalContent .modal-body{
+	background-color: #2196F3;
+	color: white;
+	padding: 0.6em 1em;
+	font-size: 1.2em;
+	max-height: 8em;
+}
+
+.modalContent .modal-body > p{
+	margin: 0;
+}
+
+.modal-footer{
+	margin: 0;
+	padding: 0;
+}
+
+.modal-footer > button, .modal-footer > a{
+	display: block;
+	width: 100%;
+	background-color: white;
+	color: #333;
+	text-align: center;
+	border: none;
+	font-size: 1.2em;
+	font-weight: medium;
+	line-height: 2.5;
+	position: relative;
+	outline: none;
+}
+.modal-footer > button:not(:first-child), .modal-footer > a:not(:first-child){
+	border-top: 1px solid rgba(0,0,0,0.12);
+}
+
+#clipboardContent{
+	position: fixed;
+	width: 0;
+	height: 0;
+	left: -9999;
+	top: -9999;
+	opacity: 0;
+}
+
+md-backdrop.md-sidenav-backdrop{
+	z-index: 1001;
+}
+
+md-sidenav.md-sidenav-left{
+	z-index: 1002;
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	position: absolute;
+	background-image: url("../res/assets/foggy-birds.png");
+}
+
+.sidebar-brand, .sidebar-about{
+	text-align: left;
+	font-family: 'Quicksand';
+	padding: 1.5em 2em 1em;
+	overflow: hidden;
+	background: none;
+}
+
+.sidebar-brand{
+	display: flex;
+	align-items: top;
+	flex: 75%;
+}
+
+.sidebar-about{
+	flex: fill;
+}
+
+.sidebar-brand img{
+	display: block;
+	margin: auto;
+	margin-top: 10vh;
+	width: 25vh;
+}
+
+.sidebar-brand h1{
+	line-height: 3;
+	font-size: 28px;
+	text-align: center;
+}
+
+.sidebar-about, .sidebar-about a{
+	width: 100%;
+	background-color: #222222;
+	margin: 0;
+	position: relative;
+}
+
+.sidebar-about p, .sidebar-about a{
+	font-size: 1.2em;
+	text-decoration: none;
+	color: white;
+}
+
+.sidebar-about img{
+	width: 20%;
+}
+
+p#toast{
+	position: fixed;
+	bottom: -6rem;
+	left: 0;
+	width: 100%;
+	margin: 0;
+	text-align: center;
+	background-color: rgba(34,34,34,0.9);
+	color: white;
+	font-size: 1.4rem;
+	font-weight: 600;
+	padding: 8px 16px;
+	line-height: 2;
+	z-index: 9999;
+	pointer-events: none;
+	transition: bottom 400ms ease-out, opacity 100ms linear;
+}
+
+@media (max-width: 959px) and (min-width: 0) and (orientation: portrait) {
+	.md-toolbar-tools {
+		height: initial;
+		max-height: initial;
+	}
+}
+
+@media (max-width: 959px) and (min-width: 0) and (orientation: landscape) {
+	.md-toolbar-tools {
+		height: initial;
+		max-height: initial;
+	}
+}
+
+#login{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #2196F3;
+	z-index: 99999;
+	padding: 10vw;
+	color: white;
+	display: grid;
+	grid-template-rows: 1.4fr 1fr;
+}
+#login *{
+	outline: none;
+}
+#login > div{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+#login > div > div{
+	width: 100%;
+}
+
+#login img{
+	height: 25vh;
+	display: block;
+	margin: auto;
+	filter: drop-shadow(3px 3px 0 rgba(0,0,0,0.6));
+	transition: filter 200ms linear;
+}
+#login-brand h1{
+	text-align: center;
+	display: block;
+	line-height: 2;
+	font-size: 2.2em;
+}
+#login-brand p{
+	text-align: center;
+	font-weight: 400;
+	font-size: 1.1em;
+	color: rgba(255,255,255,0.8);
+}
+
+#login-options button{
+	width: 100%;
+	background-color: white;
+	color: #333;
+	border: #333333;
+	border-radius: 4px;
+	line-height: 1.4;
+	padding: 8px;
+	font-size: bold;
+	margin: 8px 0;
+	font-size: 1.3em;
+	position: relative;
+}
+#login-options span{
+	display: block;
+	text-align: center;
+	font-size: 1.4rem;
+}
+
+#login > #formOverlay{
+	position: fixed;
+	bottom: -320px;
+	left: 0;
+	background-color: #fafafa;
+	width: 100%;
+	color: #333;
+	padding: 12px 24px 48px;
+	box-shadow: 0 -8px 10px rgba(0,0,0,0.1);
+}
+#login > #formOverlay{
+	transition: bottom 400ms ease-out;
+}
+#overlayBg{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 0;
+	pointer-events: none;
+}
+#overlayBg{
+	transition: opacity 500ms linear;
+}
+#formOverlay form{
+	width: 100%;
+}
+#formOverlay h2{
+	display: block;
+	width: 100%;
+	line-height: 1.5;
+}
+#formOverlay input:not(:last-child){
+	width: 100%;
+	border: none;
+	background: none;
+	font-size: 1.66rem;
+	border-bottom: 1px solid #ccc;
+	padding: 4px 8px;
+	margin: 8px 0;
+	line-height: 2;
+}
+#formOverlay input:not(:last-child):focus{
+	border-bottom-color: #2196F3;
+	transition: border-bottom-color 200ms linear;
+}
+#formOverlay input[type="submit"]{
+	width: 100%;
+	line-height: 2.5;
+	background-color: #2196F3;
+	border: none;
+	border-radius: 4px;
+	color: white;
+	margin-top: 32px;
+	font-size: 1.2em;
+	font-weight: 600;
+}
+#formOverlay input[type="submit"]:disabled{
+	background-color: #81D4FA;
+}
+
+#formOverlay span.formError{
+	color: red;
+	font-size: 1.1em;
+	line-height: 1.8;
+	padding: 0 32px 6px;
+	padding-left: 32px;
+	position: relative;
+	overflow: hidden;
+}
+#formOverlay span.formError:before{
+	content: url(../res/assets/ui/round-error_outline-24px.svg);
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 90%;
+}
+
+#cloud-fill{
+	width: 100%;
+	height: 90vh;
+	position: relative;
+	display: flex;
+	align-items: center;
+	padding-top: 24px;
+}
+
+#cloud-spinner{
+	margin: auto;
+	display: block;
+	width: 20vw;
+}
+
+#cloud-message{
+	font-size: 1.6em;
+	text-align: center;
+	color: rgba(0,0,0,0.5);
+	padding: 0 2em;
+}
+
+/* Form validation CSS */
+#formOverlay input.ng-dirty.ng-invalid{
+	border-bottom-color: red;
+}
+
+/* Page transitions */
+
+.navbar > .ng-enter{
+	animation: fade 200ms linear;
+}
+
+.ng-enter.app-body{ 
+	animation: fade 200ms linear, scale 300ms ease-out;
+}
+
+@keyframes fade{
+	from	{ opacity: 0; }
+	to		{ opacity: 1; }
+}
+
+@keyframes scale{
+	from	{ transform: scale(0.98) }
+	to		{ transform: scale(1); }
+}

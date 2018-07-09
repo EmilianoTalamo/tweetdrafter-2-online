@@ -1,0 +1,25 @@
+<div class="section section-wide sidebar-brand">
+	<div>
+	<img src="./res/assets/td-icon.svg" alt="tweetdrafter">
+	<h1 ng-if="userStatus != 'offline'">{{ user }}</h1>
+	<h1 ng-if="userStatus == 'offline'">Offline mode</h1>
+	</div>
+</div>
+
+	<a 
+		class="section section-wide sidebar-about"
+		mn-touch
+		secure-tap="logIn()"
+		md-ink-ripple="#FFFFFF"
+		ng-if="userStatus == 'offline'">
+		<p>Log in / Register</p>
+	</a>
+
+	<a 
+		class="section section-wide sidebar-about"
+		mn-touch
+		secure-tap="logOut()"
+		md-ink-ripple="#FFFFFF"
+		ng-if="userStatus != 'offline'">
+		<p>Log out</p>
+	</a>

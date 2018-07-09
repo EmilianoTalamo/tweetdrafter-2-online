@@ -1,0 +1,15 @@
+<div ng-controller="viewInput">
+	<textarea 
+		name="inputContent" 
+		id="inputContent" 
+		autofocus
+		cols="30" rows="10" 
+		ng-model="inputContent"
+		ng-change="inputChange()"
+		></textarea>
+	<span
+		id="charcount"
+		ng-bind="charCount"
+		ng-class="charclass ? 'charcount-err' : ''"
+		>280</span>
+</div>

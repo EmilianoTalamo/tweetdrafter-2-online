@@ -1,0 +1,73 @@
+<div id="login" ng-controller="welcome">
+	<div id="login-brand">
+		<div>
+			<img src="./res/assets/td-bird.svg" alt="">
+			<h1>tweetdrafter</h1>
+			<p>With tweetdrafter you can save drafts for your tweets faster than ever.</p>
+		</div>
+	</div>
+	<div id="login-options">
+		<div>
+
+		<button
+			md-ink-ripple="true"
+			mn-touch
+			secure-tap="loginLogin()"
+		>Login</button>
+
+		<button
+			md-ink-ripple="true"
+			mn-touch
+			secure-tap="loginRegister()"
+		>Register</button>
+
+
+		<span>or</span>
+		<button
+			md-ink-ripple="true"
+			mn-touch
+			secure-tap="loginSkip()"
+		>Use offline</button>
+	</div>
+</div>
+
+	<div id="overlayBg" mn-touch tap="untriggerForm()"></div>
+	<div id="formOverlay">
+		<h2>{{ formTitle }}</h2>
+
+			<span class="formError" ng-show="formErrorTrigger">{{ errorMessage }}</span>
+			<span class="formError" ng-show="form.username.$invalid && form.username.$touched && !form.username.$pristine">The username must be between 4 and 15 characters with no spaces or special characters.</span>
+			<span class="formError" ng-show="form.password.$invalid && form.password.$touched && !form.password.$pristine">The password must be between 4 and 40 characters with no spaces or special characters.</span>
+
+
+		<form 
+			novalidate 
+			name="form"
+			ng-submit="form.$valid && submitform()" 
+			method="post">
+
+			<input 
+				type="text" 
+				name="username" 
+				placeholder="Username" 
+				ng-model="username"
+				ng-maxlength="15"
+				ng-minlength="4"
+				ng-pattern="formRegex"
+				required>
+
+			<input 
+				type="password" 
+				name="password" 
+				placeholder="Password"
+				ng-model="password"
+				ng-maxlength="40"
+				ng-minlength="4"
+				ng-pattern="formRegex"
+				required>
+
+			<input type="submit" value="{{ submitText }}" ng-disabled="disableFormBtn || form.$invalid">
+
+		</form>
+	</div>
+</div>

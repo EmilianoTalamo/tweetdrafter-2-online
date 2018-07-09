@@ -1,0 +1,32 @@
+<div ng-controller="cloudList">
+
+	<md-content class="md-padding md-hie-3" ng-hide="showCloudFill">
+		<md-card ng-repeat="item in cloud track by $index">
+			<md-card-content>
+				<p> {{ item.content }} </p>
+			</md-card-content>
+			<md-divider></md-divider>
+			<md-card-actions layout="row" layout-align="end center">
+
+					<md-button 
+						class="md-warn"
+						mn-touch
+						secure-tap="cloudDelete({{ item.id }})"
+						>Delete</md-button>
+
+					<md-button 
+						class="md-primary"
+						mn-touch
+						secure-tap="cloudCopy($index)"
+						>Download</md-button>
+					
+			</md-card-actions>
+		</md-card>
+	</md-content>
+
+	<div id="cloud-fill" ng-if="showCloudFill">
+		<img class="ui-loading" id="cloud-spinner" src="./res/assets/ui/spinner-cyan.svg" alt="" ng-if="showCloudSpinner">
+		<p id="cloud-message" ng-if="showCloudMessage">{{ cloudMessage }}</p>
+	</div>
+
+</div>

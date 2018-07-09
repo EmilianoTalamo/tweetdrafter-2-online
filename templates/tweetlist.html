@@ -1,0 +1,22 @@
+<div ng-controller="viewList">
+	<ul id="tweetsContainer">
+
+		<!-- Tweet item -->
+		<li 
+		ng-repeat="item in ls track by $index" 
+		hm-press="heldTweet($index, $event)"
+		hm-tap="tapTweet($index)"
+		hm-recognizer-options="[ { 'type' : 'press', 'time' : 600 } ]"
+		class="tweetItem" 
+		ng-class="ls[$index].length > {{ charLimit }} ? 'tweetItem-long' : ''"
+		md-ink-ripple="#2196F3">
+			{{ item }}
+		</li>
+	</ul>
+
+	<!-- New tweet button -->
+	<a href="#/input/new/"><md-button class="md-fab md-primary md-hue-4" id="newTweetBtn" aria-label="Add Tweet">
+		<md-icon md-svg-src="./res/assets/ui/round-add-24px.svg"></md-icon>
+	</md-button></a>
+
+</div>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
+	<title>Tweetdrafter App</title>
+	<meta name="author" content="Emiliano Tálamo">
+	<link rel="me" href="mailto:emilianotalamo@gmail.com">
+	<meta name="theme-color" content="#2196F3">
+	<meta name="msapplication-TileColor" content="#2196F3">
+
+	<!-- AngularJS Libraries -->
+	<script src="./scripts/angular/angular.min.js"></script>
+	<script src="./scripts/angular/angular-animate.min.js"></script>
+	<script src="./scripts/angular/angular-aria.min.js"></script>
+	<script src="./scripts/angular/angular-messages.min.js"></script>
+	<script src="./scripts/angular/angular-route.min.js"></script>
+
+	<!-- Angular UI Library Script -->
+	<script src="./scripts/mobile-angular-ui/mobile-angular-ui.min.js"></script>
+
+	<!-- Angular Material Library Script -->
+	<script src="./scripts/angular-material/angular-material.min.js"></script>
+
+	<!-- Dependecies Scripts -->
+	<script src="./scripts/jquery-3.3.1.min.js"></script>
+	<script src="./scripts/mn-touch/mn-touch.min.js"></script>
+	<script src="./scripts/hammer/hammer.min.js"></script>
+	<script src="./scripts/hammer/angular.hammer.min.js"></script>
+	<script src="./scripts/ocModal/ocModal.min.js"></script>
+	<script src="./scripts/ngClipboard/clipboard.min.js"></script>
+	<script src="./scripts/ngClipboard/ngclipboard.min.js"></script>
+
+	<!-- App scripts -->
+	<script src="./scripts/tweetdrafter/td-main.js"></script>
+	<script src="./scripts/tweetdrafter/td-app-routing.js"></script>
+	<script src="./scripts/tweetdrafter/td-navbar.js"></script>
+	<script src="./scripts/tweetdrafter/td-sidebar.js"></script>
+	<script src="./scripts/tweetdrafter/td-modal.js"></script>
+	<script src="./scripts/tweetdrafter/td-welcome.js"></script>
+	<script src="./scripts/tweetdrafter/td-tweetlist.js"></script>
+	<script src="./scripts/tweetdrafter/td-input.js"></script>
+	<script src="./scripts/tweetdrafter/td-cloud.js"></script>
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="./css/mobile-angular-ui-base.min.css">
+	<link rel="stylesheet" href="./css/mobile-angular-ui-hover.min.css">
+	<link rel="stylesheet" href="./css/angular-material.min.css">
+	<link rel="stylesheet" href="./css/ocModal.full.min.css">
+	<link rel="stylesheet" href="./css/ocModal.animations.min.css">
+	<link rel="stylesheet" href="./css/tweetdrafter.css">
+</head>
+
+<body ng-app="tweetdrafter" class="app">
+	
+
+	<!-- navbars -->
+	<div class="navbar navbar-app navbar-absolute-top" ng-controller="navBar">
+
+		<!-- Tweetlist navbar -->
+		<div ng-if="currentPath == '/list'" ng-include="'./templates/navbar/nav-tweetlist.html'"></div>
+
+		<!-- Sync screen navbar -->
+		<div ng-if="currentPath == '/cloud'" ng-include="'./templates/navbar/nav-cloud.html'"></div>
+
+		<!-- Tweet input navbar -->
+		<div ng-if="currentPath == '/input/:context/:id' || currentPath == '/input/:context'" ng-include="'./templates/navbar/nav-inputpage.html'"></div>
+	</div>
+
+
+	<!-- sidebar -->
+	<md-sidenav 
+		class="md-sidenav-left" 
+		md-component-id="left" 
+		md-whiteframe="4" 
+		ng-controller="sidebar" 
+		mn-touch 
+		swipe-left="sidebarSwipeLeft()" ng-include="'./templates/sidebar.html'">
+	</md-sidenav>
+
+
+	<!-- dynamic view -->
+	<div ng-view class="app-body"></div>
+
+
+	<!-- Toast messages -->
+	<p id="toast"></p>
+	
+</body>
+</html>

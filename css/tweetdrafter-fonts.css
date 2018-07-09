@@ -1,0 +1,27 @@
+@font-face {
+	font-family: 'Quicksand';
+	font-style: normal;
+	font-weight: 400;
+	src: url('../res/fonts/quicksand/Quicksand-Medium.ttf');
+}
+
+@font-face {
+	font-family: 'Quicksand';
+	font-style: normal;
+	font-weight: 700;
+	src: url('../res/fonts/quicksand/Quicksand-Bold.ttf');
+}
+
+@font-face {
+	font-family: 'Quicksand';
+	font-style: normal;
+	font-weight: 300;
+	src: url('../res/fonts/quicksand/Quicksand-Light.ttf');
+}
+
+@font-face {
+	font-family: 'Noto Serif';
+	font-style: normal;
+	font-weight: 400;
+	src: url('../res/fonts/noto-serif/NotoSerif-Regular.ttf');
+}

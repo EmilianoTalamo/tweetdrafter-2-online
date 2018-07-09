@@ -1,0 +1,30 @@
+<div class="md-toolbar-tools">
+
+	<md-button class="md-icon-button" aria-label="Back" ng-disabled="false" md-ripple-size="full" mn-touch secure-tap="backBtn()">
+		<md-icon md-svg-icon="./res/assets/ui/round-arrow_back-24px.svg"></md-icon>
+	</md-button>
+
+	<div md-truncate flex class="navbar-brand navbar-brand-left">Uploaded tweets</div>
+
+	<md-button 
+		class="md-icon-button ui-loading" 
+		aria-label="Loading..." 
+		ng-disabled="true" 
+		md-ripple-size="none"
+		ng-if="showSpinner">
+	<md-icon
+		md-svg-icon="./res/assets/ui/spinner-white.svg"></md-icon>
+	</md-button>
+
+	<md-button 
+		class="md-icon-button" 
+		aria-label="Upload all" 
+		ng-disabled="false" 
+		md-ripple-size="full" 
+		mn-touch 
+		secure-tap="syncDownloadAll()">
+	<md-icon
+		md-svg-icon="./res/assets/ui/round-cloud_download-24px.svg"></md-icon>
+	</md-button>
+	
+	</div>
